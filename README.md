@@ -49,7 +49,7 @@ Contenu couvert à ce jour :
   simple
 - Comparaison de l'implémentation avec PyTorch
 
-Notebook : [`01-micrograd.ipynb`](./01-micrograd.ipynb)
+Notebook : [`karpathy-s-micrograd-ep1.ipynb`](./karpathy-s-micrograd-ep1.ipynb)
 
 ---
 
