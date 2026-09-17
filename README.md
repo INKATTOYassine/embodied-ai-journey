@@ -33,17 +33,27 @@ suivie de la construction manuelle d'un petit réseau de neurones.
 
 Contenu couvert à ce jour :
 - Classe `Value` : stockage de données, construction du graphe de calcul
-  (`_prev`, `_op`)
-- Opérations : `__add__`, `__mul__`, `__pow__`, `relu`, négation unaire
+  (`_prev`, `_op`), gradient (`grad`), fonction `_backward` par nœud
+- Opérations : `__add__`, `__mul__`, `__pow__`, `relu`, `tanh`,
+  négation unaire
+- Visualisation du graphe de calcul (Graphviz)
+- Implémentation de `backward()` : tri topologique du graphe puis
+  propagation des gradients en sens inverse, via la fonction `_backward`
+  locale de chaque nœud
 - Vérification indépendante des dérivées par différences finies
   (comparaison forward pass vs. gradient numérique)
 - Test de validation multi-opérations ("torture test") : addition,
   multiplication, puissance, division, ReLU et accumulation `+=`
   combinés dans un seul graphe
 
+Limite connue, à corriger à la prochaine session :
+- `backward()` assigne les gradients par affectation directe (`=`) et
+  non par accumulation (`+=`). Le résultat est donc incorrect dès
+  qu'une même `Value` est réutilisée plusieurs fois dans un graphe
+  (ex. `y = a + a`). Correction prévue avant de poursuivre.
+
 À venir :
-- Implémentation de `backward()` (backpropagation automatique via tri
-  topologique)
+- Correction de l'accumulation des gradients (`+=`)
 - Classes `Neuron`, `Layer`, `MLP`
 - Boucle d'entraînement par descente de gradient sur un jeu de données
   simple
@@ -83,4 +93,4 @@ Profil complet : [Portfolio](https://yassineinkatto.github.io/Portfolio/) ·
 
 ---
 
-*Dernière mise à jour : 04 juillet 2026*
+*Dernière mise à jour : 17 septembre 2026*
